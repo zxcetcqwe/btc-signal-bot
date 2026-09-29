@@ -1,0 +1,820 @@
+
+================================================================================
+SYSTEMD STATUS
+================================================================================
+● btc-signal-bot.service - BTC Signal Bot
+     Loaded: loaded (/etc/systemd/system/btc-signal-bot.service; enabled; preset: enabled)
+     Active: active (running) since Sat 2026-05-02 05:07:23 UTC; 2 days ago
+   Main PID: 3127 (python)
+      Tasks: 2 (limit: 4538)
+     Memory: 86.7M (peak: 87.2M)
+        CPU: 58min 5.648s
+     CGroup: /system.slice/btc-signal-bot.service
+             └─3127 /root/btc-signal-bot/venv/bin/python /root/btc-signal-bot/bot.py
+
+May 04 05:21:58 btc-bot python[3127]: 2026-05-04 05:21:58,164 | INFO | price=80021.5 regime=RANGE rsi=17.1 atr=56.6 vol=0.82 ob=0.3715
+May 04 05:22:14 btc-bot python[3127]: 2026-05-04 05:22:14,509 | INFO | price=80024.5 regime=RANGE rsi=21.7 atr=53.3 vol=0.99 ob=0.1935
+May 04 05:22:30 btc-bot python[3127]: 2026-05-04 05:22:30,910 | INFO | price=80028.7 regime=RANGE rsi=21.7 atr=53.3 vol=0.99 ob=-0.587
+May 04 05:22:47 btc-bot python[3127]: 2026-05-04 05:22:47,266 | INFO | price=80024.5 regime=RANGE rsi=21.7 atr=53.3 vol=0.99 ob=-0.4967
+May 04 05:23:03 btc-bot python[3127]: 2026-05-04 05:23:03,612 | INFO | price=80024.4 regime=RANGE rsi=27.6 atr=45.8 vol=1.50 ob=0.4118
+May 04 05:23:20 btc-bot python[3127]: 2026-05-04 05:23:20,009 | INFO | price=80029.1 regime=RANGE rsi=27.6 atr=45.8 vol=1.50 ob=-0.3136
+May 04 05:23:36 btc-bot python[3127]: 2026-05-04 05:23:36,416 | INFO | price=80029.1 regime=RANGE rsi=27.6 atr=45.8 vol=1.50 ob=-0.2624
+May 04 05:23:52 btc-bot python[3127]: 2026-05-04 05:23:52,811 | INFO | price=80029.1 regime=RANGE rsi=27.6 atr=45.8 vol=1.50 ob=-0.3192
+May 04 05:24:09 btc-bot python[3127]: 2026-05-04 05:24:09,216 | INFO | price=80029.3 regime=RANGE rsi=23.6 atr=44.5 vol=1.81 ob=-0.0284
+May 04 05:24:25 btc-bot python[3127]: 2026-05-04 05:24:25,615 | INFO | price=80029.4 regime=RANGE rsi=23.6 atr=44.5 vol=1.81 ob=-0.5175
+
+
+================================================================================
+FILES
+================================================================================
+total 1.1M
+-rw-r--r-- 1 root root    0 May  4 05:24 audit_report.txt
+-rw-r--r-- 1 root root 1.1M May  4 05:24 bot.log
+-rw-r--r-- 1 root root  27K May  2 05:06 bot.py
+drwxr-xr-x 2 root root 4.0K May  2 05:07 __pycache__
+-rw-r--r-- 1 root root   43 May  2 04:44 requirements.txt
+-rw-r--r-- 1 root root 1.4K May  4 01:32 signals.csv
+-rw-r--r-- 1 root root  245 May  4 04:50 state.json
+drwxr-xr-x 5 root root 4.0K May  2 01:18 venv
+
+
+================================================================================
+SAFE ENV CONFIG
+================================================================================
+TELEGRAM_BOT_TOKEN=OK len=46
+TELEGRAM_CHAT_ID=966738311
+OPENAI_API_KEY=OK len=164
+OPENAI_MODEL=gpt-5.5
+OKX_INST_ID=BTC-USDT-SWAP
+MIN_RR=3.0
+MAX_SIGNALS_PER_DAY=4
+HEARTBEAT_HOURS=6
+LOOP_SECONDS=15
+COOLDOWN_MINUTES=20
+LEVERAGE=MISSING
+ENTRY_FEE_RATE=MISSING
+EXIT_FEE_RATE=MISSING
+MAX_FEE_TO_REWARD=MISSING
+MIN_TP_MOVE_PCT=MISSING
+USE_EFFECTIVE_RR=MISSING
+
+================================================================================
+BOT FUNCTION LIST
+================================================================================
+52: def now_utc():
+56: def now_ts():
+60: def today_str():
+64: def load_state():
+94: def save_state(state):
+99: def telegram_send(text):
+149: def ensure_signals_csv():
+158: def load_signal_rows():
+165: def write_signal_rows(rows):
+176: def parse_float(value, default=0.0):
+183: def parse_int(value, default=0):
+190: def age_minutes(iso_text):
+200: def record_signal(candidate, regime, snapshot, review):
+244: def update_paper_signals(candle_ts_ms, high, low, close):
+354: def okx_get(path, params):
+365: def fetch_ticker():
+376: def fetch_candles(bar, limit):
+410: def fetch_orderbook_imbalance(depth=20):
+437: def ema(series, span):
+441: def rsi(close, period=14):
+450: def atr(df, period=14):
+458: def with_indicators(df):
+469: def slope(series, lookback):
+475: def detect_regime(df1, df5, df15):
+506: def detect_levels(df1):
+518: def rr_value(side, entry, sl, tp):
+532: def round_price(x):
+536: def make_candidate(side, setup, entry, sl, tp, reason):
+549: def score_candidate(c, df1, df5, df15, regime, levels, ob_imbalance):
+608: def detect_candidate(df1, df5, df15, regime, levels, ob_imbalance):
+708: def make_hash(obj):
+713: def extract_json(text):
+731: def ai_review(candidate, snapshot):
+784: def format_signal(candidate, regime, snapshot, review):
+808: def send_heartbeat_if_needed(state, ticker, regime):
+828: def cooldown_active(state):
+832: def main():
+
+================================================================================
+RECENT BOT LOG
+================================================================================
+2026-05-04 05:02:50,307 | INFO | price=80310.0 regime=TREND_UP rsi=47.2 atr=53.0 vol=0.75 ob=-0.9682
+2026-05-04 05:03:06,711 | INFO | price=80301.9 regime=TREND_UP rsi=47.6 atr=52.1 vol=0.69 ob=0.9012
+2026-05-04 05:03:23,208 | INFO | price=80313.0 regime=TREND_UP rsi=47.6 atr=52.1 vol=0.69 ob=-0.3505
+2026-05-04 05:03:39,607 | INFO | price=80283.1 regime=TREND_UP rsi=47.6 atr=52.1 vol=0.69 ob=-0.658
+2026-05-04 05:03:55,959 | INFO | price=80255.9 regime=TREND_UP rsi=47.6 atr=52.1 vol=0.69 ob=0.7061
+2026-05-04 05:04:12,357 | INFO | price=80311.5 regime=TREND_UP rsi=50.3 atr=53.1 vol=0.69 ob=0.5914
+2026-05-04 05:04:28,708 | INFO | price=80312.4 regime=TREND_UP rsi=50.3 atr=53.1 vol=0.69 ob=0.4601
+2026-05-04 05:04:45,164 | INFO | price=80333.3 regime=TREND_UP rsi=50.3 atr=53.1 vol=0.69 ob=-0.9909
+2026-05-04 05:05:01,555 | INFO | price=80320.3 regime=TREND_UP rsi=50.3 atr=53.1 vol=0.69 ob=0.6514
+2026-05-04 05:05:17,903 | INFO | price=80333.4 regime=TREND_UP rsi=52.4 atr=55.9 vol=1.39 ob=0.6872
+2026-05-04 05:05:34,357 | INFO | price=80292.2 regime=TREND_UP rsi=52.4 atr=55.9 vol=1.39 ob=-0.486
+2026-05-04 05:05:50,709 | INFO | price=80307.0 regime=TREND_UP rsi=52.4 atr=55.9 vol=1.39 ob=0.0197
+2026-05-04 05:06:07,105 | INFO | price=80312.1 regime=TREND_UP rsi=47.2 atr=55.6 vol=1.07 ob=-0.8071
+2026-05-04 05:06:23,509 | INFO | price=80310.3 regime=TREND_UP rsi=47.2 atr=55.6 vol=1.07 ob=0.1195
+2026-05-04 05:06:39,861 | INFO | price=80313.6 regime=TREND_UP rsi=47.2 atr=55.6 vol=1.07 ob=0.5804
+2026-05-04 05:06:56,218 | INFO | price=80315.9 regime=TREND_UP rsi=47.2 atr=55.6 vol=1.07 ob=0.8525
+2026-05-04 05:07:12,615 | INFO | price=80318.8 regime=TREND_UP rsi=56.4 atr=51.9 vol=0.98 ob=0.9957
+2026-05-04 05:07:29,017 | INFO | price=80320.1 regime=TREND_UP rsi=56.4 atr=51.9 vol=0.98 ob=0.7094
+2026-05-04 05:07:45,364 | INFO | price=80297.3 regime=TREND_UP rsi=56.4 atr=51.9 vol=0.98 ob=0.0672
+2026-05-04 05:08:01,916 | INFO | price=80261.1 regime=TREND_UP rsi=56.4 atr=51.9 vol=0.98 ob=0.851
+2026-05-04 05:08:18,316 | INFO | price=80258.0 regime=TREND_UP rsi=48.4 atr=52.1 vol=1.32 ob=-0.3803
+2026-05-04 05:08:34,713 | INFO | price=80260.1 regime=TREND_UP rsi=48.4 atr=52.1 vol=1.32 ob=0.3353
+2026-05-04 05:08:51,067 | INFO | price=80255.0 regime=TREND_UP rsi=48.4 atr=52.1 vol=1.32 ob=0.8289
+2026-05-04 05:09:07,410 | INFO | price=80170.6 regime=TREND_UP rsi=42.9 atr=57.1 vol=2.98 ob=0.4912
+2026-05-04 05:09:23,767 | INFO | price=80162.9 regime=TREND_UP rsi=42.9 atr=57.1 vol=2.98 ob=-0.0001
+2026-05-04 05:09:40,116 | INFO | price=80182.5 regime=TREND_UP rsi=42.9 atr=57.1 vol=2.98 ob=0.2904
+2026-05-04 05:09:56,466 | INFO | price=80191.9 regime=TREND_UP rsi=42.9 atr=57.1 vol=2.98 ob=0.8035
+2026-05-04 05:10:12,864 | INFO | price=80186.4 regime=TREND_UP rsi=49.0 atr=56.9 vol=2.61 ob=0.3637
+2026-05-04 05:10:29,267 | INFO | price=80160.7 regime=TREND_UP rsi=49.0 atr=56.9 vol=2.61 ob=-0.5172
+2026-05-04 05:10:45,610 | INFO | price=80163.2 regime=TREND_UP rsi=49.0 atr=56.9 vol=2.61 ob=-0.2076
+2026-05-04 05:11:01,958 | INFO | price=80179.1 regime=TREND_UP rsi=49.0 atr=56.9 vol=2.61 ob=0.3121
+2026-05-04 05:11:18,311 | INFO | price=80148.4 regime=TREND_UP rsi=43.6 atr=57.6 vol=1.52 ob=0.9532
+2026-05-04 05:11:34,819 | INFO | price=80178.6 regime=TREND_UP rsi=43.6 atr=57.6 vol=1.52 ob=0.0108
+2026-05-04 05:11:51,219 | INFO | price=80174.1 regime=TREND_UP rsi=43.6 atr=57.6 vol=1.52 ob=-0.0348
+2026-05-04 05:12:07,614 | INFO | price=80180.1 regime=TREND_UP rsi=40.6 atr=57.2 vol=0.95 ob=0.2362
+2026-05-04 05:12:24,013 | INFO | price=80146.6 regime=TREND_UP rsi=40.6 atr=57.2 vol=0.95 ob=-0.2729
+2026-05-04 05:12:40,416 | INFO | price=80141.2 regime=TREND_UP rsi=40.6 atr=57.2 vol=0.95 ob=-0.4505
+2026-05-04 05:12:56,816 | INFO | price=80160.5 regime=TREND_UP rsi=40.6 atr=57.2 vol=0.95 ob=0.0421
+2026-05-04 05:13:13,215 | INFO | price=80151.3 regime=TREND_UP rsi=31.3 atr=56.7 vol=1.30 ob=-0.787
+2026-05-04 05:13:29,619 | INFO | price=80141.1 regime=TREND_UP rsi=31.3 atr=56.7 vol=1.30 ob=0.6514
+2026-05-04 05:13:46,066 | INFO | price=80148.1 regime=TREND_UP rsi=31.3 atr=56.7 vol=1.30 ob=-0.1378
+2026-05-04 05:14:02,460 | INFO | price=80147.2 regime=TREND_UP rsi=30.3 atr=56.0 vol=1.28 ob=0.0174
+2026-05-04 05:14:18,815 | INFO | price=80116.7 regime=TREND_UP rsi=30.3 atr=56.0 vol=1.28 ob=0.9909
+2026-05-04 05:14:35,166 | INFO | price=80113.7 regime=TREND_UP rsi=30.3 atr=56.0 vol=1.28 ob=0.0514
+2026-05-04 05:14:51,510 | INFO | price=80113.7 regime=TREND_UP rsi=30.3 atr=56.0 vol=1.28 ob=-0.5239
+2026-05-04 05:15:07,861 | INFO | price=80120.2 regime=TREND_UP rsi=19.7 atr=54.5 vol=3.61 ob=0.0459
+2026-05-04 05:15:24,269 | INFO | price=80115.2 regime=TREND_UP rsi=19.7 atr=54.5 vol=3.61 ob=-0.9228
+2026-05-04 05:15:40,665 | INFO | price=80107.0 regime=TREND_UP rsi=19.7 atr=54.5 vol=3.61 ob=-0.1519
+2026-05-04 05:15:57,014 | INFO | price=80113.0 regime=TREND_UP rsi=19.7 atr=54.5 vol=3.61 ob=-0.6994
+2026-05-04 05:16:13,414 | INFO | price=80120.8 regime=TREND_UP rsi=22.2 atr=51.7 vol=0.89 ob=0.9795
+2026-05-04 05:16:29,810 | INFO | price=80090.8 regime=TREND_UP rsi=22.2 atr=51.7 vol=0.89 ob=-0.1282
+2026-05-04 05:16:46,210 | INFO | price=80038.2 regime=TREND_UP rsi=22.2 atr=51.7 vol=0.89 ob=-0.3645
+2026-05-04 05:17:02,612 | INFO | price=80044.1 regime=TREND_UP rsi=18.4 atr=57.1 vol=5.15 ob=0.6596
+2026-05-04 05:17:19,011 | INFO | price=80068.0 regime=TREND_UP rsi=18.4 atr=57.1 vol=5.15 ob=0.9879
+2026-05-04 05:17:35,362 | INFO | price=80088.0 regime=TREND_UP rsi=18.4 atr=57.1 vol=5.15 ob=0.422
+2026-05-04 05:17:51,717 | INFO | price=80077.2 regime=TREND_UP rsi=18.4 atr=57.1 vol=5.15 ob=0.1269
+2026-05-04 05:18:08,414 | INFO | price=80089.2 regime=TREND_UP rsi=28.2 atr=57.1 vol=0.92 ob=0.183
+2026-05-04 05:18:24,812 | INFO | price=80096.0 regime=TREND_UP rsi=28.2 atr=57.1 vol=0.92 ob=0.1393
+2026-05-04 05:18:41,369 | INFO | price=80099.9 regime=TREND_UP rsi=28.2 atr=57.1 vol=0.92 ob=-0.7816
+2026-05-04 05:18:57,766 | INFO | price=80074.1 regime=TREND_UP rsi=28.2 atr=57.1 vol=0.92 ob=-0.3523
+2026-05-04 05:19:14,162 | INFO | price=80081.3 regime=TREND_UP rsi=19.9 atr=54.6 vol=0.88 ob=-0.5613
+2026-05-04 05:19:30,564 | INFO | price=80073.5 regime=TREND_UP rsi=19.9 atr=54.6 vol=0.88 ob=-0.476
+2026-05-04 05:19:46,969 | INFO | price=80006.8 regime=TREND_UP rsi=19.9 atr=54.6 vol=0.88 ob=0.1353
+2026-05-04 05:20:03,363 | INFO | price=80001.3 regime=RANGE rsi=17.6 atr=57.5 vol=2.55 ob=0.618
+2026-05-04 05:20:19,764 | INFO | price=80009.2 regime=RANGE rsi=17.6 atr=57.5 vol=2.55 ob=0.71
+2026-05-04 05:20:36,164 | INFO | price=80012.9 regime=RANGE rsi=17.6 atr=57.5 vol=2.55 ob=-0.3277
+2026-05-04 05:20:52,561 | INFO | price=80012.8 regime=RANGE rsi=17.6 atr=57.5 vol=2.55 ob=0.5964
+2026-05-04 05:21:08,965 | INFO | price=80012.9 regime=RANGE rsi=17.1 atr=56.6 vol=0.82 ob=-0.1661
+2026-05-04 05:21:25,414 | INFO | price=80010.6 regime=RANGE rsi=17.1 atr=56.6 vol=0.82 ob=-0.579
+2026-05-04 05:21:41,816 | INFO | price=80012.0 regime=RANGE rsi=17.1 atr=56.6 vol=0.82 ob=0.6743
+2026-05-04 05:21:58,164 | INFO | price=80021.5 regime=RANGE rsi=17.1 atr=56.6 vol=0.82 ob=0.3715
+2026-05-04 05:22:14,509 | INFO | price=80024.5 regime=RANGE rsi=21.7 atr=53.3 vol=0.99 ob=0.1935
+2026-05-04 05:22:30,910 | INFO | price=80028.7 regime=RANGE rsi=21.7 atr=53.3 vol=0.99 ob=-0.587
+2026-05-04 05:22:47,266 | INFO | price=80024.5 regime=RANGE rsi=21.7 atr=53.3 vol=0.99 ob=-0.4967
+2026-05-04 05:23:03,612 | INFO | price=80024.4 regime=RANGE rsi=27.6 atr=45.8 vol=1.50 ob=0.4118
+2026-05-04 05:23:20,009 | INFO | price=80029.1 regime=RANGE rsi=27.6 atr=45.8 vol=1.50 ob=-0.3136
+2026-05-04 05:23:36,416 | INFO | price=80029.1 regime=RANGE rsi=27.6 atr=45.8 vol=1.50 ob=-0.2624
+2026-05-04 05:23:52,811 | INFO | price=80029.1 regime=RANGE rsi=27.6 atr=45.8 vol=1.50 ob=-0.3192
+2026-05-04 05:24:09,216 | INFO | price=80029.3 regime=RANGE rsi=23.6 atr=44.5 vol=1.81 ob=-0.0284
+2026-05-04 05:24:25,615 | INFO | price=80029.4 regime=RANGE rsi=23.6 atr=44.5 vol=1.81 ob=-0.5175
+
+
+================================================================================
+SIGNALS CSV SUMMARY
+================================================================================
+Rows: 2
+
+By side:
+side
+LONG    2
+
+By setup:
+setup
+breakout_retest_long    2
+
+By regime:
+regime
+TREND_UP    1
+RANGE       1
+
+By status:
+status
+SL    1
+TP    1
+
+Result R sum: 2.0
+Result R mean: 1.0
+TP count: 1
+SL count: 1
+EXPIRED count: 0
+
+Last 20 signals:
+                     created_utc side                setup   regime   entry      sl      tp  rr  score status  result_r                                                                                                                                                                                                                                                                                        ai_comment
+2026-05-02T16:09:27.836216+00:00 LONG breakout_retest_long TREND_UP 78464.1 78421.7 78591.2 3.0    7.0     SL      -1.0                                                                                                                               Лонг соответствует восходящему режиму; вход задан на ретесте пробитого уровня 78463, R:R приемлемый, указанные уровни не блокируют TP. По текущей цене не догонять.
+2026-05-04T00:57:44.962592+00:00 LONG breakout_retest_long    RANGE 78454.6 78355.9 78750.8 3.0    7.0     TP       3.0 Вход не выглядит запоздалым: цена близко к зоне ретеста локального сопротивления 78452.6. R:R около 3 приемлемый, TP не упирается в ближайшее указанное сопротивление, до major_resistance есть запас. Режим RANGE требует осторожности, но прямого противоречия для лонга от ретеста пробоя нет.
+
+================================================================================
+CORE CODE EXCERPTS
+================================================================================
+
+--- FUNCTION detect_regime ---
+475: def detect_regime(df1, df5, df15):
+476:     last = df1.iloc[-1]
+477:     body = abs(float(last["close"]) - float(last["open"]))
+478:     atr_now = max(float(last["atr"]), 1e-9)
+479:     vol_ratio = float(last["vol_ratio"])
+480: 
+481:     if body > 2.2 * atr_now and vol_ratio > 1.35:
+482:         return "IMPULSE"
+483: 
+484:     ema20_5 = float(df5["ema20"].iloc[-1])
+485:     ema50_5 = float(df5["ema50"].iloc[-1])
+486:     ema20_15 = float(df15["ema20"].iloc[-1])
+487:     ema50_15 = float(df15["ema50"].iloc[-1])
+488: 
+489:     slope5 = slope(df5["ema20"], 5)
+490:     slope15 = slope(df15["ema20"], 4)
+491: 
+492:     if ema20_5 > ema50_5 and ema20_15 >= ema50_15 and slope5 > 0 and slope15 >= 0:
+493:         return "TREND_UP"
+494: 
+495:     if ema20_5 < ema50_5 and ema20_15 <= ema50_15 and slope5 < 0 and slope15 <= 0:
+496:         return "TREND_DOWN"
+497: 
+498:     recent = df1.iloc[-35:]
+499:     range_size = float(recent["high"].max() - recent["low"].min())
+500:     if range_size < 4.0 * atr_now:
+501:         return "CHOP"
+502: 
+503:     return "RANGE"
+504: 
+505: 
+
+
+--- FUNCTION detect_levels ---
+506: def detect_levels(df1):
+507:     hist = df1.iloc[-100:-3].copy()
+508:     recent = df1.iloc[-30:-3].copy()
+509: 
+510:     return {
+511:         "major_support": float(hist["low"].min()),
+512:         "major_resistance": float(hist["high"].max()),
+513:         "local_support": float(recent["low"].min()),
+514:         "local_resistance": float(recent["high"].max())
+515:     }
+516: 
+517: 
+
+
+--- FUNCTION rr_value ---
+518: def rr_value(side, entry, sl, tp):
+519:     if side == "LONG":
+520:         risk = entry - sl
+521:         reward = tp - entry
+522:     else:
+523:         risk = sl - entry
+524:         reward = entry - tp
+525: 
+526:     if risk <= 0 or reward <= 0:
+527:         return 0.0
+528: 
+529:     return reward / risk
+530: 
+531: 
+
+
+--- FUNCTION make_candidate ---
+536: def make_candidate(side, setup, entry, sl, tp, reason):
+537:     rr = rr_value(side, entry, sl, tp)
+538:     return {
+539:         "side": side,
+540:         "setup": setup,
+541:         "entry": round_price(entry),
+542:         "sl": round_price(sl),
+543:         "tp": round_price(tp),
+544:         "rr": round(float(rr), 2),
+545:         "reason": reason
+546:     }
+547: 
+548: 
+
+
+--- FUNCTION score_candidate ---
+549: def score_candidate(c, df1, df5, df15, regime, levels, ob_imbalance):
+550:     score = 0.0
+551:     side = c["side"]
+552:     rr = c["rr"]
+553:     last = df1.iloc[-1]
+554: 
+555:     price = float(last["close"])
+556:     atr_now = max(float(last["atr"]), 1e-9)
+557:     ema20 = float(last["ema20"])
+558:     vol_ratio = float(last["vol_ratio"])
+559:     rsi_now = float(last["rsi"])
+560: 
+561:     if side == "LONG" and regime in ["TREND_UP", "RANGE"]:
+562:         score += 1.5
+563:     if side == "SHORT" and regime in ["TREND_DOWN", "RANGE"]:
+564:         score += 1.5
+565:     if regime == "IMPULSE":
+566:         score -= 0.7
+567:     if regime == "CHOP":
+568:         score -= 3.0
+569: 
+570:     if rr >= 3.0:
+571:         score += 2.0
+572:     elif rr >= 2.5:
+573:         score += 0.8
+574:     else:
+575:         score -= 3.0
+576: 
+577:     if vol_ratio >= 1.2:
+578:         score += 1.0
+579:     elif vol_ratio >= 1.0:
+580:         score += 0.4
+581:     else:
+582:         score -= 0.4
+583: 
+584:     dist = abs(price - ema20) / atr_now
+585:     if dist <= 1.3:
+586:         score += 1.0
+587:     elif dist > 2.2:
+588:         score -= 1.2
+589: 
+590:     if "retest" in c["setup"]:
+591:         score += 1.4
+592:     if "breakout" in c["setup"] or "breakdown" in c["setup"]:
+593:         score += 0.7
+594: 
+595:     if side == "LONG" and ob_imbalance > 0.10:
+596:         score += 0.4
+597:     if side == "SHORT" and ob_imbalance < -0.10:
+598:         score += 0.4
+599: 
+600:     if side == "LONG" and rsi_now > 75:
+601:         score -= 0.8
+602:     if side == "SHORT" and rsi_now < 25:
+603:         score -= 0.8
+604: 
+605:     return round(max(0.0, min(10.0, score)), 2)
+606: 
+607: 
+
+
+--- FUNCTION detect_candidate ---
+608: def detect_candidate(df1, df5, df15, regime, levels, ob_imbalance):
+609:     last = df1.iloc[-1]
+610:     prev = df1.iloc[-2]
+611: 
+612:     close = float(last["close"])
+613:     open_ = float(last["open"])
+614:     high = float(last["high"])
+615:     low = float(last["low"])
+616:     prev_close = float(prev["close"])
+617:     atr_now = max(float(last["atr"]), 1e-9)
+618:     ema20 = float(last["ema20"])
+619:     ema50 = float(last["ema50"])
+620: 
+621:     local_support = levels["local_support"]
+622:     local_resistance = levels["local_resistance"]
+623: 
+624:     candidates = []
+625: 
+626:     breakout_buffer = 0.10 * atr_now
+627:     sl_buffer = 0.35 * atr_now
+628: 
+629:     # 1) Breakout long: цена закрылась выше сопротивления.
+630:     if prev_close <= local_resistance and close > local_resistance + breakout_buffer:
+631:         entry = local_resistance + 0.05 * atr_now
+632:         sl = min(local_resistance - sl_buffer, float(df1["low"].iloc[-8:].min()) - 0.10 * atr_now)
+633:         tp = entry + (entry - sl) * MIN_RR
+634:         candidates.append(make_candidate(
+635:             "LONG",
+636:             "breakout_retest_long",
+637:             entry,
+638:             sl,
+639:             tp,
+640:             "Пробой локального сопротивления; план — вход не в импульс, а на ретесте пробитой зоны."
+641:         ))
+642: 
+643:     # 2) Breakdown short: цена закрылась ниже поддержки.
+644:     if prev_close >= local_support and close < local_support - breakout_buffer:
+645:         entry = local_support - 0.05 * atr_now
+646:         sl = max(local_support + sl_buffer, float(df1["high"].iloc[-8:].max()) + 0.10 * atr_now)
+647:         tp = entry - (sl - entry) * MIN_RR
+648:         candidates.append(make_candidate(
+649:             "SHORT",
+650:             "breakdown_retest_short",
+651:             entry,
+652:             sl,
+653:             tp,
+654:             "Пробой локальной поддержки; план — вход на ретесте пробитой зоны снизу."
+655:         ))
+656: 
+657:     # 3) Pullback long.
+658:     if regime == "TREND_UP":
+659:         touched_ema = low <= ema20 or low <= ema50
+660:         reclaimed = close > ema20 and close > open_
+661:         if touched_ema and reclaimed:
+662:             entry = close
+663:             sl = min(low, float(df1["low"].iloc[-8:].min())) - sl_buffer
+664:             tp = entry + (entry - sl) * MIN_RR
+665:             candidates.append(make_candidate(
+666:                 "LONG",
+667:                 "pullback_long",
+668:                 entry,
+669:                 sl,
+670:                 tp,
+671:                 "Откат к EMA в восходящем режиме и закрытие обратно выше EMA20."
+672:             ))
+673: 
+674:     # 4) Pullback short.
+675:     if regime == "TREND_DOWN":
+676:         touched_ema = high >= ema20 or high >= ema50
+677:         rejected = close < ema20 and close < open_
+678:         if touched_ema and rejected:
+679:             entry = close
+680:             sl = max(high, float(df1["high"].iloc[-8:].max())) + sl_buffer
+681:             tp = entry - (sl - entry) * MIN_RR
+682:             candidates.append(make_candidate(
+683:                 "SHORT",
+684:                 "pullback_short",
+685:                 entry,
+686:                 sl,
+687:                 tp,
+688:                 "Откат к EMA в нисходящем режиме и закрытие обратно ниже EMA20."
+689:             ))
+690: 
+691:     valid = []
+692:     for c in candidates:
+693:         if c["rr"] < MIN_RR:
+694:             continue
+695: 
+696:         c["score"] = score_candidate(c, df1, df5, df15, regime, levels, ob_imbalance)
+697: 
+698:         if c["score"] >= 7.0:
+699:             valid.append(c)
+700: 
+701:     if not valid:
+702:         return None
+703: 
+704:     valid.sort(key=lambda x: x["score"], reverse=True)
+705:     return valid[0]
+706: 
+707: 
+
+
+--- FUNCTION ai_review ---
+731: def ai_review(candidate, snapshot):
+732:     if not OPENAI_API_KEY:
+733:         return {
+734:             "approved": candidate["score"] >= 8.0,
+735:             "comment": "OpenAI key отсутствует. Fallback: разрешено только для score >= 8.",
+736:             "veto": "NO_OPENAI_KEY"
+737:         }
+738: 
+739:     prompt = {
+740:         "task": "Review BTC-USDT-SWAP futures signal. Return strict JSON only.",
+741:         "rules": [
+742:             "Do not invent new levels.",
+743:             "Do not promise profit.",
+744:             "Reject if entry looks late.",
+745:             "Reject if R:R is weak.",
+746:             "Reject if regime contradicts side.",
+747:             "Reject if nearby support/resistance blocks TP."
+748:         ],
+749:         "candidate": candidate,
+750:         "market_snapshot": snapshot,
+751:         "required_json": {
+752:             "approved": True,
+753:             "comment": "short explanation in Russian",
+754:             "veto": "NONE or short reason"
+755:         }
+756:     }
+757: 
+758:     try:
+759:         client = OpenAI(api_key=OPENAI_API_KEY)
+760:         resp = client.responses.create(
+761:             model=OPENAI_MODEL,
+762:             input=json.dumps(prompt, ensure_ascii=False)
+763:         )
+764: 
+765:         raw = resp.output_text.strip()
+766:         data = extract_json(raw)
+767: 
+768:         return {
+769:             "approved": bool(data.get("approved", False)),
+770:             "comment": str(data.get("comment", ""))[:600],
+771:             "veto": str(data.get("veto", "NONE"))[:200]
+772:         }
+773: 
+774:     except Exception as e:
+775:         log.exception("OpenAI failed: %s", e)
+776: 
+777:         return {
+778:             "approved": candidate["score"] >= 8.0,
+779:             "comment": "OpenAI недоступен. Fallback разрешает только score >= 8.",
+780:             "veto": "OPENAI_ERROR"
+781:         }
+782: 
+783: 
+
+
+--- FUNCTION record_signal ---
+200: def record_signal(candidate, regime, snapshot, review):
+201:     ensure_signals_csv()
+202: 
+203:     created = now_utc().isoformat()
+204:     raw_id = json.dumps(
+205:         {
+206:             "created": created,
+207:             "candidate": candidate,
+208:             "regime": regime
+209:         },
+210:         ensure_ascii=False,
+211:         sort_keys=True
+212:     )
+213:     signal_id = hashlib.sha256(raw_id.encode("utf-8")).hexdigest()[:16]
+214: 
+215:     row = {
+216:         "id": signal_id,
+217:         "created_utc": created,
+218:         "created_candle_ts_ms": str(snapshot.get("last_candle_ts", "")),
+219:         "instrument": OKX_INST_ID,
+220:         "side": candidate.get("side", ""),
+221:         "setup": candidate.get("setup", ""),
+222:         "regime": regime,
+223:         "entry": candidate.get("entry", ""),
+224:         "sl": candidate.get("sl", ""),
+225:         "tp": candidate.get("tp", ""),
+226:         "rr": candidate.get("rr", ""),
+227:         "score": candidate.get("score", ""),
+228:         "status": "WAIT_ENTRY",
+229:         "fill_price": "",
+230:         "opened_utc": "",
+231:         "resolved_utc": "",
+232:         "result_r": "",
+233:         "checks": "0",
+234:         "ai_comment": review.get("comment", "")
+235:     }
+236: 
+237:     rows = load_signal_rows()
+238:     rows.append(row)
+239:     write_signal_rows(rows)
+240: 
+241:     log.info("Paper signal recorded: %s", row)
+242: 
+243: 
+
+
+--- FUNCTION update_paper_signals ---
+244: def update_paper_signals(candle_ts_ms, high, low, close):
+245:     if not SIGNALS_CSV.exists():
+246:         return
+247: 
+248:     rows = load_signal_rows()
+249:     changed = False
+250:     messages = []
+251: 
+252:     for row in rows:
+253:         status = row.get("status", "")
+254: 
+255:         if status in ["TP", "SL", "EXPIRED", "CANCELLED"]:
+256:             continue
+257: 
+258:         created_candle_ts_ms = parse_int(row.get("created_candle_ts_ms"), 0)
+259: 
+260:         # Не проверяем сигнал на той же свече, на которой он был создан.
+261:         if created_candle_ts_ms and candle_ts_ms <= created_candle_ts_ms:
+262:             continue
+263: 
+264:         side = row.get("side", "")
+265:         entry = parse_float(row.get("entry"))
+266:         sl = parse_float(row.get("sl"))
+267:         tp = parse_float(row.get("tp"))
+268:         rr = parse_float(row.get("rr"))
+269:         checks = parse_int(row.get("checks"), 0) + 1
+270:         row["checks"] = str(checks)
+271: 
+272:         # Сигнал не вечный: если entry не дали за 2 часа, отменяем paper-сделку.
+273:         if status == "WAIT_ENTRY" and age_minutes(row.get("created_utc", "")) > 120:
+274:             row["status"] = "EXPIRED"
+275:             row["resolved_utc"] = now_utc().isoformat()
+276:             row["result_r"] = "0"
+277:             changed = True
+278:             messages.append(
+279:                 f"BTC PAPER EXPIRED\n"
+280:                 f"{side} {row.get('setup')}\n"
+281:                 f"Entry was not reached in 2h\n"
+282:                 f"Entry: {entry}\n"
+283:                 f"SL: {sl}\n"
+284:                 f"TP: {tp}"
+285:             )
+286:             continue
+287: 
+288:         if status == "WAIT_ENTRY":
+289:             entry_touched = low <= entry <= high
+290: 
+291:             if not entry_touched:
+292:                 changed = True
+293:                 continue
+294: 
+295:             row["status"] = "OPEN"
+296:             row["fill_price"] = str(entry)
+297:             row["opened_utc"] = now_utc().isoformat()
+298:             changed = True
+299: 
+300:             messages.append(
+301:                 f"BTC PAPER ENTRY FILLED\n"
+302:                 f"{side} {row.get('setup')}\n"
+303:                 f"Entry: {entry}\n"
+304:                 f"SL: {sl}\n"
+305:                 f"TP: {tp}\n"
+306:                 f"R:R: 1:{rr}"
+307:             )
+308: 
+309:         if row.get("status") != "OPEN":
+310:             continue
+311: 
+312:         if side == "LONG":
+313:             hit_sl = low <= sl
+314:             hit_tp = high >= tp
+315:         elif side == "SHORT":
+316:             hit_sl = high >= sl
+317:             hit_tp = low <= tp
+318:         else:
+319:             continue
+320: 
+321:         if hit_sl and hit_tp:
+322:             # Консервативно: если в одной свече были и TP, и SL, считаем SL.
+323:             row["status"] = "SL"
+324:             row["result_r"] = "-1"
+325:         elif hit_tp:
+326:             row["status"] = "TP"
+327:             row["result_r"] = str(rr)
+328:         elif hit_sl:
+329:             row["status"] = "SL"
+330:             row["result_r"] = "-1"
+331:         else:
+332:             changed = True
+333:             continue
+334: 
+335:         row["resolved_utc"] = now_utc().isoformat()
+336:         changed = True
+337: 
+338:         messages.append(
+339:             f"BTC PAPER RESULT | {row['status']}\n"
+340:             f"{side} {row.get('setup')}\n"
+341:             f"Entry: {entry}\n"
+342:             f"SL: {sl}\n"
+343:             f"TP: {tp}\n"
+344:             f"Result: {row['result_r']}R"
+345:         )
+346: 
+347:     if changed:
+348:         write_signal_rows(rows)
+349: 
+350:     for msg in messages:
+351:         telegram_send(msg)
+352: 
+353: 
+
+
+--- FUNCTION main ---
+832: def main():
+833:     state = load_state()
+834: 
+835:     telegram_send(
+836:         "BTC Signal Bot started\n"
+837:         f"Instrument: {OKX_INST_ID}\n"
+838:         f"Model: {OPENAI_MODEL}\n"
+839:         f"MIN_RR: {MIN_RR}\n"
+840:         f"Loop: {LOOP_SECONDS}s\n"
+841:         "Mode: signal-only"
+842:     )
+843: 
+844:     ensure_signals_csv()
+845:     log.info("signals.csv ready: %s", SIGNALS_CSV)
+846:     log.info("Bot started")
+847: 
+848:     while True:
+849:         try:
+850:             state = load_state()
+851: 
+852:             ticker = fetch_ticker()
+853:             df1 = with_indicators(fetch_candles("1m", 180))
+854:             df5 = with_indicators(fetch_candles("5m", 140))
+855:             df15 = with_indicators(fetch_candles("15m", 120))
+856:             ob_imbalance = fetch_orderbook_imbalance(20)
+857: 
+858:             regime = detect_regime(df1, df5, df15)
+859:             levels = detect_levels(df1)
+860: 
+861:             last = df1.iloc[-1]
+862:             snapshot = {
+863:                 "time_utc": now_utc().isoformat(),
+864:                 "last_candle_ts": int(last["ts"]),
+865:                 "price": ticker["last"],
+866:                 "regime": regime,
+867:                 "ema20_1m": float(last["ema20"]),
+868:                 "ema50_1m": float(last["ema50"]),
+869:                 "rsi_1m": float(last["rsi"]),
+870:                 "atr_1m": float(last["atr"]),
+871:                 "vol_ratio_1m": float(last["vol_ratio"]),
+872:                 "orderbook_imbalance": ob_imbalance,
+873:                 "levels": levels
+874:             }
+875: 
+876:             # PAPER_TRACKING_UPDATE_CALL
+877:             update_paper_signals(
+878:                 candle_ts_ms=int(last["ts"]),
+879:                 high=float(last["high"]),
+880:                 low=float(last["low"]),
+881:                 close=float(last["close"])
+882:             )
+883: 
+884:             log.info(
+885:                 "price=%.1f regime=%s rsi=%.1f atr=%.1f vol=%.2f ob=%s",
+886:                 ticker["last"],
+887:                 regime,
+888:                 snapshot["rsi_1m"],
+889:                 snapshot["atr_1m"],
+890:                 snapshot["vol_ratio_1m"],
+891:                 ob_imbalance
+892:             )
+893: 
+894:             send_heartbeat_if_needed(state, ticker, regime)
+895: 
+896:             if state["signals_today"] >= MAX_SIGNALS_PER_DAY:
+897:                 time.sleep(LOOP_SECONDS)
+898:                 continue
+899: 
+900:             if cooldown_active(state):
+901:                 time.sleep(LOOP_SECONDS)
+902:                 continue
+903: 
+904:             candidate = detect_candidate(df1, df5, df15, regime, levels, ob_imbalance)
+905:             if not candidate:
+906:                 time.sleep(LOOP_SECONDS)
+907:                 continue
+908: 
+909:             h = make_hash({
+910:                 "side": candidate["side"],
+911:                 "setup": candidate["setup"],
+912:                 "entry": candidate["entry"],
+913:                 "sl": candidate["sl"],
+914:                 "tp": candidate["tp"]
+915:             })
+916: 
+917:             if h == state.get("last_candidate_hash"):
+918:                 time.sleep(LOOP_SECONDS)
+919:                 continue
+920: 
+921:             review = ai_review(candidate, snapshot)
+922: 
+923:             if not review.get("approved"):
+924:                 log.info("Candidate rejected: %s | %s", candidate, review)
+925:                 state["last_candidate_hash"] = h
+926:                 save_state(state)
+927:                 time.sleep(LOOP_SECONDS)
+928:                 continue
+929: 
+930:             msg = format_signal(candidate, regime, snapshot, review)
+931: 
+932:             if telegram_send(msg):
+933:                 # PAPER_TRACKING_RECORD_CALL
+934:                 record_signal(candidate, regime, snapshot, review)
+935:                 state["signals_today"] += 1
+936:                 state["last_signal_ts"] = now_ts()
+937:                 state["last_candidate_hash"] = h
+938:                 save_state(state)
+939:                 log.info("Signal sent: %s", candidate)
+940: 
+941:             time.sleep(LOOP_SECONDS)
+942: 
+943:         except KeyboardInterrupt:
+944:             log.info("Stopped by user")
+945:             break
+946: 
+947:         except Exception as e:
+948:             log.exception("Loop error: %s", e)
+949: 
+950:             state = load_state()
+951:             if now_ts() - float(state.get("last_error_ts", 0)) > 1800:
+952:                 telegram_send(f"BTC Signal Bot error\n{type(e).__name__}: {str(e)[:300]}")
+953:                 state["last_error_ts"] = now_ts()
+954:                 save_state(state)
+955: 
+956:             time.sleep(LOOP_SECONDS)
+957: 
+958: 
+959: if __name__ == "__main__":
+960:     main()
+
+
+AUDIT DONE
